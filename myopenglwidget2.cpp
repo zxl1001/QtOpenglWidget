@@ -25,7 +25,7 @@ void MyOpenglWidget2::resizeGL(int w, int h)
     glViewport(0,0,(GLsizei)w, (GLsizei)h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0,1,0,1,-50,50);
+    glOrtho(-1,1,0,1,-50,50);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -40,17 +40,6 @@ void MyOpenglWidget2::paintGL()
     glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);   //set point smooth leve
     glEnable (GL_SMOOTH);
     //draw Point cloud
-    glPointSize(5.0f);
-    glBegin(GL_POINTS);
-    for(int i = 0; i<1000; ++i)
-    {
-        float r = qrand() % 10000 / 10000.00f;
-        float g = qrand() % 10000 / 10000.00f;
-        float b = qrand() % 10000 / 10000.00f;
-        glColor3f(r, g, b);
-        glVertex3f(r, g, b);
-    }
-    glEnd();
-    glFlush();
+    ItemDrawFunc::drawPointColud(2.0);
     qDebug()<<"myopenglwidget2 Point cloud update";
 }

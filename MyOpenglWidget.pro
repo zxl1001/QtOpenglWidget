@@ -28,13 +28,15 @@ SOURCES += main.cpp\
     openglframe1.cpp \
     openglframe2.cpp \
     myopenglwidget2.cpp \
-    myopenglwidget1.cpp
+    myopenglwidget1.cpp \
+    ItemDrawFunc.cpp
 
 HEADERS  += mainwindow.h \
     openglframe1.h \
     openglframe2.h \
     myopenglwidget2.h \
-    myopenglwidget1.h
+    myopenglwidget1.h \
+    ItemDrawFunc.h
 
 FORMS    += mainwindow.ui \
     openglframe1.ui \

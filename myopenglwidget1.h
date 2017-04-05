@@ -1,10 +1,11 @@
 #ifndef MYOPENGLWIDGET1_H
 #define MYOPENGLWIDGET1_H
+
+#include "ItemDrawFunc.h"
 #include <QWidget>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-#include <QMatrix4x4>
-#include "GL/glu.h"
+
 
 class MyOpenglWidget1 : public QOpenGLWidget/*, protected QOpenGLFunctions*/
 {

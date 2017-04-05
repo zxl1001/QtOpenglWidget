@@ -1,7 +1,7 @@
 #ifndef MYOPENGLWIDGET2_H
 #define MYOPENGLWIDGET2_H
 
-#include "GL/glu.h"
+#include "ItemDrawFunc.h"
 #include <QOpenGLWidget>
 #include <QVector3D>
 
