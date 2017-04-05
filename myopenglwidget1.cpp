@@ -73,7 +73,7 @@ void MyOpenglWidget1::paintGL()
     m_rQuad += 10;
     m_rTri -= 10;
 
-    qDebug()<<m_rQuad<<m_rTri;
+    qDebug()<<"myopenglwidget1 update";
 
 }
 

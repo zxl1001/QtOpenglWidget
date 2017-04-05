@@ -19,7 +19,7 @@ public:
     ~OpenglFrame1();
 
 public slots:
-    void updateScene();
+    void updateOgl();
 
 private slots:
     void on_rotateBtn_toggled(bool checked);

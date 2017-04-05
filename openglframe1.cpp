@@ -14,7 +14,7 @@ OpenglFrame1::OpenglFrame1(QWidget *parent) :
     ui->openglFrame->setLayout(layout);
 
     m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(updateScene()));
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(updateOgl()));
 }
 
 OpenglFrame1::~OpenglFrame1()
@@ -22,7 +22,7 @@ OpenglFrame1::~OpenglFrame1()
     delete ui;
 }
 
-void OpenglFrame1::updateScene()
+void OpenglFrame1::updateOgl()
 {
     m_glW->update();
 }
