@@ -35,7 +35,7 @@ void ItemDrawFunc::drawPointColud(float pointSize, const QVector3D &center)
 }
 
 
-void ItemDrawFunc::drawVerticalCenterLine(const QVector3D &start, const QVector3D &end)
+void ItemDrawFunc::drawCenterLine(const QVector3D &start, const QVector3D &end)
 {
     glColor3f(1,1,0);
     glBegin(GL_LINES);
@@ -44,48 +44,61 @@ void ItemDrawFunc::drawVerticalCenterLine(const QVector3D &start, const QVector3
     glEnd();
 }
 
-void ItemDrawFunc::draw2DQuads(const QVector3D &center, GLfloat h, GLfloat w, GLfloat radiu)
+void ItemDrawFunc::draw2DQuads(const QVector3D &center, GLfloat h, GLfloat w)
 {
-    glPushMatrix();
-    glTranslatef(center.x(),center.y(),center.z());
-    drawVerticalCenterLine(QVector3D(0, 1,0), QVector3D(0,-1,0));
-    glRotatef(radiu, 0,1,0);
-    //    glColor4f(1.0,0.0,0.0,1.0); //set the quad color;
-
     glBegin(GL_QUADS);
     glColor3f( 1.0, 0.0, 0.0 );glVertex3f(-h,-w,0.0);
     glColor3f( 0.0, 1.0, 0.0 );glVertex3f(h,-w, 0.0);
     glColor3f( 0.0, 0.0, 1.0 );glVertex3f(h,w, 0.0);
     glColor3f( 1.0, 1.0, 0.0 );glVertex3f(-h, w, 0.0);
     glEnd();
+}
+
+void ItemDrawFunc::draw2DQuads(const QVector3D &center, GLfloat h, GLfloat w, GLfloat radiu)
+{
+    glPushMatrix();
+    glTranslatef(center.x(),center.y(),center.z());
+    drawCenterLine(QVector3D(0, 1,0), QVector3D(0,-1,0));
+    glRotatef(radiu, 0,1,0);
+    //    glColor4f(1.0,0.0,0.0,1.0); //set the quad color;
+
+    draw2DQuads(center,h,w);
     glPopMatrix();
 
 }
 
-void ItemDrawFunc::draw2DTriangles(const QVector3D &center, GLfloat h, GLfloat w, GLfloat radiu)
+void ItemDrawFunc::draw2DTriangles(const QVector3D &center, GLfloat h, GLfloat w)
 {
-
-    glPushMatrix();
-    glTranslatef(center.x(), center.y(), center.z());
-    drawVerticalCenterLine(QVector3D(0, 1,0), QVector3D(0,-1,0));
-    glRotatef(radiu, 0, 1, 0);
-    glClearColor(0.0,0.0,0.0,0.0);
-    //    glColor3f(0,0,1);
     glBegin(GL_TRIANGLES);
     glColor3f( 1.0, 0.0, 0.0 );glVertex3f(0,w,0.0);
     glColor3f( 0.0, 1.0, 0.0 ); glVertex3f(h,-w,0);
     glColor3f( 0.0, 0.0, 1.0 );glVertex3f(-h,-w,0.0);
     glEnd();
-    glPopMatrix();
 }
 
-
-void ItemDrawFunc::draw3DQuads(const QVector3D &center, GLfloat h, GLfloat w, GLfloat d, GLfloat radiu)
+void ItemDrawFunc::draw3DTriangles(const QVector3D &center, GLfloat h, GLfloat w, GLfloat d)
 {
-    glPushMatrix();
-    glTranslated(center.x(), center.y(), center.z());
+    glBegin( GL_TRIANGLES );
+    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0, h, 0.0 );
+    glColor3f(0.0, 1.0, 0.0 );glVertex3f(-w, -h, d );
+    glColor3f(0.0, 0.0, 1.0 );glVertex3f(w, -h, d );
 
-    glRotatef(radiu, 0,1,0);
+    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0.0, h, 0.0 );
+    glColor3f(0.0, 0.0, 1.0 );glVertex3f(w, -h,  d );
+    glColor3f(0.0, 1.0, 0.0 );glVertex3f(w, -h, -d );
+
+    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0.0, h, 0.0 );
+    glColor3f(0.0, 1.0, 0.0 );glVertex3f(w, -h, -d );
+    glColor3f(0.0, 0.0, 1.0 );glVertex3f(-w, -h, -d );
+
+    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0.0, h,0.0 );
+    glColor3f(0.0, 0.0, 1.0 );glVertex3f(-w, -h, -d );
+    glColor3f(0.0, 1.0, 0.0 );glVertex3f(-w, -h,  d );
+    glEnd();
+}
+
+void ItemDrawFunc::draw3DQuads(const QVector3D &center, GLfloat h, GLfloat w, GLfloat d)
+{
     glBegin(GL_QUADS);
     //1top
     glColor3f( 1.0, 0.5, 0.0 );
@@ -129,8 +142,31 @@ void ItemDrawFunc::draw3DQuads(const QVector3D &center, GLfloat h, GLfloat w, GL
     glVertex3f(h, -w,  d);
     glVertex3f(h, -w, -d);
     glEnd();
+}
 
-    drawVerticalCenterLine(QVector3D(0,1,0), QVector3D(0,-1,0));
+void ItemDrawFunc::draw2DTriangles(const QVector3D &center, GLfloat h, GLfloat w, GLfloat radiu)
+{
+    glPushMatrix();
+    glTranslatef(center.x(), center.y(), center.z());
+    drawCenterLine(QVector3D(0, 1,0), QVector3D(0,-1,0));
+    glRotatef(radiu, 0, 1, 0);
+    glClearColor(0.0,0.0,0.0,0.0);
+    //    glColor3f(0,0,1);
+    draw2DTriangles(center, h,w);
+    glPopMatrix();
+}
+
+
+void ItemDrawFunc::draw3DQuads(const QVector3D &center, GLfloat h, GLfloat w, GLfloat d, GLfloat radiu)
+{
+    glPushMatrix();
+    glTranslated(center.x(), center.y(), center.z());
+
+    glRotatef(radiu, 0,1,0);
+//    draw3DQuads(center, h, w);
+    draw3DQuads(center,h,w,d);
+
+    drawCenterLine(QVector3D(0,1,0), QVector3D(0,-1,0));
     glPopMatrix();
 
 }
@@ -140,24 +176,7 @@ void ItemDrawFunc::draw3DTriangles(const QVector3D &center, GLfloat h, GLfloat w
     glPushMatrix();
     glTranslatef(center.x(), center.y(), center.z());
     glRotatef(radiu, 0,1,0);
-
-    glBegin( GL_TRIANGLES );
-    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0, h, 0.0 );
-    glColor3f(0.0, 1.0, 0.0 );glVertex3f(-w, -h, d );
-    glColor3f(0.0, 0.0, 1.0 );glVertex3f(w, -h, d );
-
-    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0.0, h, 0.0 );
-    glColor3f(0.0, 0.0, 1.0 );glVertex3f(w, -h,  d );
-    glColor3f(0.0, 1.0, 0.0 );glVertex3f(w, -h, -d );
-
-    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0.0, h, 0.0 );
-    glColor3f(0.0, 1.0, 0.0 );glVertex3f(w, -h, -d );
-    glColor3f(0.0, 0.0, 1.0 );glVertex3f(-w, -h, -d );
-
-    glColor3f(1.0, 0.0, 0.0 );glVertex3f(0.0, h,0.0 );
-    glColor3f(0.0, 0.0, 1.0 );glVertex3f(-w, -h, -d );
-    glColor3f(0.0, 1.0, 0.0 );glVertex3f(-w, -h,  d );
-    glEnd();
-    drawVerticalCenterLine(QVector3D(0,1,0), QVector3D(0,-1,0));
+    draw3DTriangles(center, h, w, d);
+    drawCenterLine(QVector3D(0,1,0), QVector3D(0,-1,0));
     glPopMatrix();
 }

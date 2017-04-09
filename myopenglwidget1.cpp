@@ -63,7 +63,7 @@ void MyOpenglWidget1::paintGL()
     glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 
 
-    m_drawFunc->drawVerticalCenterLine(QVector3D(0,1,0), QVector3D(0,-1,0));
+    m_drawFunc->drawCenterLine(QVector3D(0,1,0), QVector3D(0,-1,0));
 
 //        draw2DQuads(QVector3D(-0.5, 0.0, 0.0), 0.25, 0.25);
     m_drawFunc->draw3DQuads(QVector3D(-0.5,0,3), 0.25, 0.25, 0.25, m_rQuad);

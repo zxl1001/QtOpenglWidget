@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="oglTab1">
        <attribute name="title">
@@ -28,6 +28,11 @@
       <widget class="QWidget" name="oglTab2">
        <attribute name="title">
         <string>OGL2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="oglTab3">
+       <attribute name="title">
+        <string>OGL3</string>
        </attribute>
       </widget>
      </widget>

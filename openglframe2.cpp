@@ -13,6 +13,8 @@ OpenglFrame2::OpenglFrame2(QWidget *parent) :
 
     m_glW = new MyOpenglWidget2(this);
     QVBoxLayout *layout = new QVBoxLayout(ui->openglFrame);
+    layout->setMargin(0);
+    layout->setSpacing(0);
     layout->addWidget(m_glW);
     ui->openglFrame->setLayout(layout);
 
