@@ -2,10 +2,16 @@
 #include <QDebug>
 
 MyOpenglWidget2::MyOpenglWidget2(QWidget *parent, Qt::WindowFlags f)
-    :QOpenGLWidget(parent, f)
+    :QOpenGLWidget(parent, f),m_drawFunc(NULL)
 {
      m_rTri = 0;
      m_rQuad = 0;
+     m_drawFunc = new ItemDrawFunc;
+}
+
+MyOpenglWidget2::~MyOpenglWidget2()
+{
+    delete m_drawFunc;
 }
 
 void MyOpenglWidget2::initializeGL()
@@ -40,6 +46,8 @@ void MyOpenglWidget2::paintGL()
     glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);   //set point smooth leve
     glEnable (GL_SMOOTH);
     //draw Point cloud
-    ItemDrawFunc::drawPointColud(2.0);
+    m_drawFunc->drawPointColud(8.0);
     qDebug()<<"myopenglwidget2 Point cloud update";
+    m_rQuad += 10;
+    m_rTri -= 10;
 }

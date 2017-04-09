@@ -1,8 +1,8 @@
 #ifndef OPENGLFRAME1_H
 #define OPENGLFRAME1_H
 
+
 #include "myopenglwidget1.h"
-#include "myopenglwidget2.h"
 #include <QDialog>
 #include <QTimer>
 
@@ -28,6 +28,7 @@ private:
     Ui::OpenglFrame1 *ui;
     MyOpenglWidget1 *m_glW;
     QTimer         *m_timer;
+    ItemDrawFunc   *m_drawFunc;
 };
 
 #endif // OPENGLFRAME1_H

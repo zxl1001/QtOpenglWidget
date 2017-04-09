@@ -20,7 +20,16 @@ class ItemDrawFunc
 {
 public:
     ItemDrawFunc();
-    static void drawPointColud(float pointSize, const QVector3D &center = QVector3D());
+
+    void drawVerticalCenterLine(const QVector3D &start, const QVector3D &end);
+
+    void draw2DQuads(const QVector3D &center, GLfloat h, GLfloat w, GLfloat radiu); //绘制四边形
+    void draw2DTriangles(const QVector3D &center, GLfloat h, GLfloat w, GLfloat radiu);//绘制三角形
+
+    void draw3DQuads(const QVector3D &center, GLfloat h, GLfloat w, GLfloat d, GLfloat radiu);
+    void draw3DTriangles(const QVector3D &center, GLfloat h, GLfloat w, GLfloat d, GLfloat radiu);
+
+    void drawPointColud(float pointSize, const QVector3D &center = QVector3D());
 };
 
 #endif // ITEMDRAWFUNC_H

@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 {
     ui->setupUi(this);
+
     ui->oglTab1->setLayout(new QVBoxLayout(this));
     ui->oglTab2->setLayout(new QVBoxLayout(this));
 

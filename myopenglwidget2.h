@@ -11,6 +11,7 @@ class MyOpenglWidget2: public QOpenGLWidget
     Q_OBJECT
 public:
     MyOpenglWidget2(QWidget *parent=Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+    virtual ~MyOpenglWidget2();
     void initializeGL();
     void resizeGL(int w, int h);
     void paintGL();
@@ -28,6 +29,7 @@ public:
 private:
     GLfloat m_rTri;
     GLfloat m_rQuad;
+    ItemDrawFunc *m_drawFunc;
 };
 
 #endif // MYOPENGLWIDGET2_H
